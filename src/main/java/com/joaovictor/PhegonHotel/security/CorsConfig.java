@@ -17,6 +17,6 @@ public class CorsConfig {
                         .allowedMethods("GET", "POST", "PUT", "DELETE")//Permite os métodos GET, POST, PUT e DELETE
                         .allowedOrigins("*");//Permite que qualquer origem tenha acesso
             }
-        }
+        };
     }
 }
