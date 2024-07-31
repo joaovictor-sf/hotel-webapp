@@ -13,7 +13,10 @@ Meus conhecimentos e duvidas:
 
 ## Queries ultilizadas
 
-### @Query("SELECT DISTINCT r.roomType FROM Room r")
+***1***
+```java
+@Query("SELECT DISTINCT r.roomType FROM Room r")
+```
 Essa query está buscando todos os tipos de quartos (roomType) distintos.
 
 Vamos detalhar:
@@ -22,7 +25,10 @@ Vamos detalhar:
 
 Portanto, a query completa retorna todos os tipos de quartos distintos.
 
-### @Query("SELECT r FROM Room r WHERE r.id NOT IN (SELECT b.room.id FROM Booking b)")
+***2***
+```java
+@Query("SELECT r FROM Room r WHERE r.id NOT IN (SELECT b.room.id FROM Booking b)")
+```
 Essa query está buscando todos os quartos (Room) que não estão associados a nenhuma reserva (Booking). 
 
 Vamos detalhar:
@@ -32,7 +38,10 @@ Vamos detalhar:
 
 Portanto, a query completa retorna todos os quartos que não estão reservados.
 
-### @Query("SELECT r FROM Room r WHERE r.roomType LIKE %:roomType% AND r.id NOT IN (SELECT b.room.id FROM Booking b WHERE (b.checkInDate <= :checkOutDate) AND (b. checkOutDate >= :checkInDate))")
+***3***
+```java
+@Query("SELECT r FROM Room r WHERE r.roomType LIKE %:roomType% AND r.id NOT IN (SELECT b.room.id FROM Booking b WHERE (b.checkInDate <= :checkOutDate) AND (b. checkOutDate >= :checkInDate))")
+```
 Essa query está buscando todos os quartos (Room) de um determinado tipo (roomType) que não estão reservados para um determinado período de tempo.
 
 Vamos detalhar:
@@ -42,7 +51,10 @@ Vamos detalhar:
 - AND r.id NOT IN: Filtra os quartos cuja id não está na lista especificada.
 - (SELECT b.room.id FROM Booking b WHERE (b.checkInDate <= :checkOutDate) AND (b. checkOutDate >= :checkInDate)): Subquery que seleciona todas as id dos quartos que estão reservados para o período de tempo especificado.
 
-## Observações sobre algumas anotações e pequenas dúvidas
+## Exceções
+Foi criado a exceção OurException, que estende de RuntimeException, para representar exceções personalizadas na aplicação. Isso é útil para encapsular exceções específicas da aplicação e fornecer mensagens de erro personalizadas.
+
+## Observações sobre algumas anotações e pequenas informações
 ### @NotNull 
 A anotação @NotNull é usada para garantir que um campo não seja nulo. Se o campo for nulo, a validação falhará e uma mensagem de erro será retornada.
 
